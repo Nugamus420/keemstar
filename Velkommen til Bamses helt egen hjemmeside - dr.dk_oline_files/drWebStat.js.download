@@ -1,0 +1,1388 @@
+// begin ensighten 16. nov 2016 v/ Fritz Stoltze Mikkelsen
+(function() {
+    var found = false;
+    var scripts = document.getElementsByTagName('script');
+    // loop every Javscript
+    for(var i = 0; i < scripts.length; i++) {
+        if (scripts[i].getAttribute('src') && scripts[i].getAttribute('src').match(/\/drdk-ensighten\/Bootstrap\.js/i))
+        {
+            found = true;
+        }
+    }
+    if (!found){
+        var scr = document.createElement('script');
+        scr.type = 'text/javascript';
+        scr.async = true;
+        scr.src = '//www.dr.dk/drdk-ensighten/Bootstrap.js';
+        var h = document.getElementsByTagName('head');
+        if (h.length > 0) {
+            h[0].appendChild(scr);
+        }
+    }
+})();
+// end ensighten 16. nov 2016 v/ Fritz Stoltze Mikkelsen
+//  Gallup system v/ Fritz Stoltze Mikkelsen 24. nov 2015 ...
+if (!window.DR) {
+    window.DR ={};  
+} 
+try {
+    // make Gallup statistik object.
+    if (typeof gallup_stat == 'undefined') {
+        var gallup_stat = {
+            inddeling: [
+ï»¿['website/dr.dk/Forsiden/','^http[s]?:\/\/www.dr.dk[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk[\/]?[?].*$|^http[s]?:\/\/www1.dr.dk[^a-zA-Z]*$'],
+['website/dr.dk/Boern/Oline/','^http[s]?:\/\/www.dr.dk\/b\/oline.*$|^http[s]?:.*\/oline.*$'],
+['website/dr.dk/Boern/Ramasjang/','^http[s]?:\/\/www.dr.dk\/_ramasjang.*$|^http[s]?:\/\/www.dr.dk\/bruno_assets.*$|^http[s]?:\/\/www.dr.dk\/lille\/games.*$|^http[s]?:\/\/www.dr.dk\/php\/bu.*$|^http[s]?:\/\/www.dr.dk\/ramasjang.*$'],
+['website/dr.dk/Boern/Ultra/','^http[s]?:\/\/mindehimlen.dk.*$|^http[s]?:\/\/www.dr.dk\/bu\/tidsrejsen.*$|^http[s]?:\/\/www.dr.dk\/mgp.*$|^http[s]?:\/\/www.dr.dk\/ultra.*$|^http[s]?:\/\/www.dr.dk\/ung.*$|www.mindehimlen.dk.*$'],
+['website/dr.dk/DR Corporate/DR Presse/','^http[s]?:\/\/presse.dr.dk\/presse.*$|^http[s]?:\/\/www.dr.dk\/drpresse.*$|^http[s]?:\/\/www.dr.dk\/presse.*$'],
+['website/dr.dk/Mere/Koncerthuset/','^http[s]?:\/\/www.dr.dk\/koncerthuset.*$'],
+['website/dr.dk/DR Corporate/Om DR/','^http[s]?:\/\/www.dr.dk\/digitalttv.*$|^http[s]?:\/\/www.dr.dk\/findmedarbejder.*$|^http[s]?:\/\/www.dr.dk\/om_dr.*$|^http[s]?:\/\/www.dr.dk\/omdr.*$|^http[s]?:\/\/www.dr.dk\/om-dr.*$|^http[s]?:\/\/www.dr.dk\/hjaelp.*$|^http[s]?:\/\/www.dr.dk\/temaer.*$'],
+['website/dr.dk/Services/DR login/','^http[s]?:\/\/www.dr.dk\/drlogin\/drlogin.*$|^http[s]?:\/\/www.dr.dk\/login.*$'],
+['website/dr.dk/Services/Privatlivspolitik/','^http[s]?:\/\/www.dr.dk\/service\/privatlivspolitik.*$'],
+['website/dr.dk/Services/Soeg/','^http[s]?:\/\/www.dr.dk\/search.*$'],
+['website/dr.dk/Services/Tilgaengelighed/','^http[s]?:\/\/www.dr.dk\/service\/tilgaengelighed.*$'],
+['website/dr.dk/Services/Mobil og apps paa DR/','^http[s]?:\/\/www.dr.dk\/mobil\/.*$|^http[s]?:\/\/www.dr.dk\/service/dr-apps.*$|^http[s]?:\/\/www.dr.dk\/service.*$|^http[s]?:\/\/www.nyheder\/service.*$'],
+['website/dr.dk/Mere/Mere Forside/','^http[s]?:\/\/www.dr.dk\/mere[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk\/mere[\/]?[?].*$|^http[s]?:\/\/www.dr.dk\/cms\/css\/quickfind\/index.html$'],
+['website/dr.dk/Mere/DR 90 aar/','^http[s]?:\/\/www.dr.dk\/tjenester\/dr90afstem.*$|^http[s]?:\/\/www.dr.dk\/tjenester\/event-dr90.*$|^http[s]?:\/\/www.dr.dk\/dr90\/klip-din-egen-video.*$'],
+['website/dr.dk/Mere/DR Ensomhed/','^http[s]?:\/\/www.dr.dk\/drensomhed.*$'],
+['website/dr.dk/Mere/DR Kaerligheds-sommer/','^http[s]?:\/\/www.dr.dk\/drdkglobal\/spot\/images\/love.*$|^http[s]?:\/\/www.dr.dk\/temaer\/kaerlighedssommer.*$'],
+['website/dr.dk/Mere/DR Undervisning/','^http[s]?:\/\/www.dr.dk\/arbejdsliv.*$|^http[s]?:\/\/www.dr.dk\/klipkassen.*$|^http[s]?:\/\/www.dr.dk\/laesforlivet_cms.*$|^http[s]?:\/\/www.dr.dk\/spion\/historiskemysterier.*$|^http[s]?:\/\/www.dr.dk\/undervisning.*$'],
+['website/dr.dk/Mere/Gymnasium/','^http[s]?:\/\/www.dr.dk\/gymnasium.*$'],
+['website/dr.dk/Mere/Have/','^http[s]?:\/\/www.dr.dk\/have.*$'],
+['website/dr.dk/Mere/MinDecember/','^http[s]?:\/\/www.dr.dk\/drmindecember.*$'],
+['website/dr.dk/Mere/Skole/','^http[s]?:\/\/www.dr.dk\/skole.*$'],
+['website/dr.dk/Mere/Tro/','^http[s]?:\/\/www.dr.dk\/tro.*$'],
+['website/dr.dk/Mere/Nysgerrig/','^http[s]?:\/\/www.dr.dk\/nysgerrig.*$'],
+['website/dr.dk/Mere/Historie/Danmarkshistorien/Danskernes egen danmarkshistorie/','^http[s]?:\/\/www.dr.dk\/historie\/danmarkshistorien\/dindkhistorie.*$'],
+['website/dr.dk/Mere/Historie/Danmarkshistorien/Hvem er jeg i danmarkshistorien/','^http[s]?:\/\/www.dr.dk\/historie\/danmarkshistorien\/hvemerdu.*$'],
+['website/dr.dk/Mere/Historie/Danmarkshistorien/Swipe i Danmarkshistorien/','^http[s]?:\/\/www.dr.dk\/historie\/danmarkshistorien\/rejsihistorien.*$'],
+['website/dr.dk/Mere/Historie/Danmarkshistorien/','^http[s]?:\/\/www.dr.dk\/historie\/danmarkshistorien.*$'],
+['website/dr.dk/Mere/Historie/','^http[s]?:\/\/www.dr.dk\/historie.*$'],
+['website/dr.dk/Mere/Mad/','^http[s]?:\/\/www.dr.dk\/mad.*$'],
+['website/dr.dk/Mere/Satire/','^http[s]?:\/\/www.dr.dk\/satire.*$'],
+['website/dr.dk/Event/Kongehuset/','^http[s]?:\/\/www.dr.dk\/event\/kongehuset.*$'],
+['website/dr.dk/Event/Melodi Grand Prix/','^http[s]?:\/\/www.dr.dk\/event\/melodigrandprix.*$'],
+['website/dr.dk/Event/X factor/','^http[s]?:\/\/www.dr.dk\/event\/xfactor.*$'],
+['website/dr.dk/Event/Versus/','^http[s]?:\/\/www.dr.dk\/event\/versus.*$'],
+['website/dr.dk/Event/Jul/','^http[s]?:\/\/www.dr.dk\/event\/jul.*$'],
+['website/dr.dk/Event/Pakkeleg/','^http[s]?:\/\/www.dr.dk.*\/pakkeleg.*$'],
+['website/dr.dk/Event/Event/','^http[s]?:\/\/www.dr.dk\/event\/detteerenbuffer.*$'],
+['website/dr.dk/Event/','^http[s]?:\/\/www.dr.dk\/event\/.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Alle nyheder','^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Nyhedsoverblik','^http[s]?:\/\/www.dr.dk\/nyheder[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk\/nyheder[\/]?[?].*$|^http[s]?:\/\/www.dr.dk\/nyheder\/.rss.true$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Baggrund','^http[s]?:\/\/www.dr.dk\/nyheder\/baggrund.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/htm\/baggrund.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Billedserier','^http[s]?:\/\/www.dr.dk\/nyheder\/billedserie.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/billeder.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Indland','^http[s]?:\/\/www.dr.dk\/nyheder\/beredskab.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/indland.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Live','^http[s]?:\/\/www.dr.dk\/nyheder\/live.*$|^http[s]?:\/\/www.dr.dk\/live\/nyheder.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Penge','^http[s]?:\/\/www.dr.dk\/nyheder\/htm\/magasiner\/penge.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/penge.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Tema nyheder','^http[s]?:\/\/www.dr.dk\/dr.dk\/nyheder\/tema.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/infografik.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/tema.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/temaer.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Udland/Valg i Frankrig','^http[s]?:\/\/www.dr.dk\/nyheder\/udland\/valgifrankrig.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Udland/USA Valg16','^http[s]?:\/\/www.dr.dk\/nyheder\/udland\/valg-i-usa-2016.*$|^http[s]?:\/\/www.dr.dk\/valg-i-usa-2016\/webdok.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/webdok\/kandidatern.*$'],
+['website/dr.dk/Nyhedsomraadet/Nyheder/Udland','^http[s]?:\/\/www.dr.dk\/nyheder\/udland.*$'],
+['website/dr.dk/Nyhedsomraadet/Politik/Kandidattesten','^http[s]?:\/\/www.dr.dk\/nyheder\/politik\/kv13\/kommuner\/kandidat-testen.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/politik\/valg2015\/kandidat-testen.*$|^http[s]?:\/\/www.dr.dk\/tjenester\/event-fv15\/kandidat-testen.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/politik\/eu15\/valgtest.*$|^http[s]?:\/\/www.dr.dk\/.*kandidat-testen.*$'],
+['website/dr.dk/Nyhedsomraadet/Politik/Valg','^http[s]?:\/\/www.dr.dk\/nyheder\/politik\/kv1.*$'],
+['website/dr.dk/Nyhedsomraadet/Politik/','^http[s]?:\/\/www.dr.dk\/nyheder\/politik.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Bornholm','^http[s]?:\/\/www.dr.dk\/arkivp4\/bornholm.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/bornholm.*$|^http[s]?:\/\/www.dr.dk\/p4bornholm.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Esbjerg','^http[s]?:\/\/www.dr.dk\/arkivp4\/esbjerg.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/esbjerg.*$|^http[s]?:\/\/www.dr.dk\/p4esbjerg.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Fyn','^http[s]?:\/\/www.dr.dk\/arkivp4\/fyn.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/fyn.*$|^http[s]?:\/\/www.dr.dk\/p4fyn.*$|^http[s]?:\/\/www.dr.dk\/programserier\/radio\/p4fyn.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Koebenhavn','^http[s]?:\/\/www.dr.dk\/arkivp4\/kbh\/nyheder\/koebenhavn.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/koebenhavn.*$|^http[s]?:\/\/www.dr.dk\/p4kbh.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/hovedstadsomraadet.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/MidtVest','^http[s]?:\/\/www.dr.dk\/arkivp4\/vest\/nyheder\/midtvest.*$|^http[s]?:\/\/www.dr.dk\/p4vest.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/midtvest.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Nordjylland','^http[s]?:\/\/www.dr.dk\/arkivp4\/nord.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/nordjylland.*$|^http[s]?:\/\/www.dr.dk\/p4nord.*$|^http[s]?:\/\/www.dr.dk\/programserier\/radio\/p4nord.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Sjaelland','^http[s]?:\/\/www.dr.dk\/arkivp4.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/sjaelland.*$|^http[s]?:\/\/www.dr.dk\/p4sjaelland.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Syd','^http[s]?:\/\/www.dr.dk\/arkivp4\/syd.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/syd.*$|^http[s]?:\/\/www.dr.dk\/p4syd.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Trekanten','^http[s]?:\/\/www.dr.dk\/arkivp4\/trekanten.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/trekanten.*$|^http[s]?:\/\/www.dr.dk\/p4trekanten.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/Oestjylland','^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/oestjylland.*$|^http[s]?:\/\/www.dr.dk\/p4aarhus.*$'],
+['website/dr.dk/Nyhedsomraadet/Regionale nyheder/','^http[s]?:\/\/www.dr.dk\/nyheder\/regionale\/.*$|^http[s]?:\/\/www.dr.dk\/p4.*$'],
+['website/dr.dk/Nyhedsomraadet/Debat/','^http[s]?:\/\/www.dr.dk\/nyheder\/debat.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/Festival','^http[s]?:\/\/www.dr.dk\/nyheder\/kultur\/festival.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/Roskilde','^http[s]?:\/\/www.dr.dk\/nyheder\/kultur\/roskilde.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/Smukfest','^http[s]?:\/\/www.dr.dk\/nyheder\/kultur\/smukfest.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/Northside','^http[s]?:\/\/www.dr.dk\/nyheder\/kultur\/northside.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/Tinderbox','^http[s]?:\/\/www.dr.dk\/nyheder\/kultur\/tinderbox.*$'],
+['website/dr.dk/Nyhedsomraadet/Kultur/','^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder\/kultur.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/kultur.*$'],
+['website/dr.dk/Nyhedsomraadet/Lev Nu/Tvaers/','^http[s]?:\/\/www.dr.dk\/levnu\/tvaers.*$'],
+['website/dr.dk/Nyhedsomraadet/Lev Nu/','^http[s]?:\/\/www.dr.dk\/levnu.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder\/levnu.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/levlivet.*$'],
+['website/dr.dk/Nyhedsomraadet/Lige til/','^http[s]?:\/\/www.dr.dk\/nyheder\/ligeti.*$|^http[s]?:\/\/www.dr.dk\/ligeti.*$'],
+['website/dr.dk/Nyhedsomraadet/Sporten/OL','^http[s]?:\/\/www.dr.dk\/sporten\/ol.*$|^http[s]?:\/\/www.dr.dk\/live\/sporten\/ol.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/webdok\/rio-2016.*$'],
+['website/dr.dk/Nyhedsomraadet/Sporten/Fodbold Slutrunde','^http[s]?:\/\/www.dr.dk\/sporten\/uefa-em-2017.*'],
+['website/dr.dk/Nyhedsomraadet/Sporten/HÃ¥ndbold Slutrunde','^http[s]?:\/\/www.dr.dk\/sporten\/haandbold-em.*$|^http[s]?:\/\/www.dr.dk\/sporten\/haandbold\/em-kvinder.*$'],
+['website/dr.dk/Nyhedsomraadet/Sporten/Tourdefrance','^http[s]?:\/\/www.dr.dk\/sporten\/cykling\/tourdefrance.*'],
+['website/dr.dk/Nyhedsomraadet/Sporten/Live','^http[s]?:\/\/www.dr.dk\/live\/sporten.*$'],
+['website/dr.dk/Nyhedsomraadet/Sporten/','^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder\/sporten.*$|^http[s]?:\/\/www.dr.dk\/sporten.*$'],
+['website/dr.dk/Nyhedsomraadet/Sundhed/','^http[s]?:\/\/www.dr.dk\/sundhed\/.*$'],
+['website/dr.dk/Nyhedsomraadet/TV nyheder/','^http[s]?:\/\/www.dr.dk\/nyheder\/lydogvideo.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/radioprogrammer.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/tv-nyheder.*$'],
+['website/dr.dk/Nyhedsomraadet/Vejret/','^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder\/vejret.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/vejret.*$'],
+['website/dr.dk/Nyhedsomraadet/Viden/','^http[s]?:\/\/www.dr.dk\/nyheder\/allenyheder\/viden.*$|^http[s]?:\/\/www.dr.dk\/nyheder\/viden.*$'],
+['website/dr.dk/Nyhedsomraadet/Webdok/','^http[s]?:\/\/www.dr.dk\/nyheder\/webdok.*$'],
+['website/dr.dk/Nyhedsomraadet/','^http[s]?:\/\/www.dr.dk\/nyheder\/.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P1','^http[s]?:\/\/www.dr.dk\/arkivp1.*$|^http[s]?:\/\/www.dr.dk\/p1.*$|^http[s]?:\/\/www.dr.dk\/p1arkiv.*$|^http[s]?:\/\/www.dr.dk\/radio\/p1.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P2','^http[s]?:\/\/www.dr.dk\/arkivp2.*$|^http[s]?:\/\/www.dr.dk\/p2.*$|^http[s]?:\/\/www.dr.dk\/radio\/p2.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P3','^http[s]?:\/\/www.dr.dk\/arkivp3.*$|^http[s]?:\/\/www.dr.dk\/p3.*$|^http[s]?:\/\/www.dr.dk\/radio\/p3.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P5','^http[s]?:\/\/www.dr.dk\/p5.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P6 Beat','^http[s]?:\/\/www.dr.dk\/p6beat.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P7 Mix','^http[s]?:\/\/www.dr.dk\/p7mix.*$'],
+['website/dr.dk/Radio/Radiokanalsider/P8 Jazz','^http[s]?:\/\/www.dr.dk\/p8jazz.*$'],
+['website/dr.dk/Radio/Radioforside/','^http[s]?:\/\/www.dr.dk\/radio[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk\/radio[\/]?[?].*$'],
+['website/dr.dk/Radio/Find radioprogram/','^http[s]?:\/\/www.dr.dk\/radio\/find-program.*$'],
+['website/dr.dk/Radio/Musik/Karrierekanon','^http[s]?:\/\/www.dr.dk\/musik\/karrierekanon.*$'],
+['website/dr.dk/Radio/Musik/','^http[s]?:\/\/www.dr.dk\/musik.*$'],
+['website/dr.dk/Radio/Netradio/','^http[s]?:\/\/www.dr.dk\/design\/www\/audiominiplayer.*$|^http[s]?:\/\/www.dr.dk\/drnetradio.*$|^http[s]?:\/\/www.dr.dk\/livenetradio.*$|^http[s]?:\/\/www.dr.dk\/netradio\/p3.*$|^http[s]?:\/\/www.dr.dk\/radio\/live.*$|^http[s]?:\/\/www.dr.dk\/radio\/netradio.*$|^http[s]?:\/\/www.dr.dk\/radio\/ondemand.*$|^http[s]?:\/\/www.dr.dk\/radio\/player\/ondemand.*$|^http[s]?:\/\/www.dr.dk\/tjenester\/livenetradio.*$|^http[s]?:\/\/www.dr.dk\/tjenester\/ny-netradio.*$'],
+['website/dr.dk/Radio/Radiodrama og lydbog/','^http[s]?:\/\/www.dr.dk\/radio\/drama-lydbog.*$|^http[s]?:\/\/www.dr.dk\/radio\/lydbog.*$|^http[s]?:\/\/www.dr.dk\/radio\/radiodrama.*$'],
+['website/dr.dk/Radio/Radiokanaloversigt/','^http[s]?:\/\/www.dr.dk\/radio\/kanaler.*$'],
+['website/dr.dk/Radio/Radioprogramoversigt/','^http[s]?:\/\/www.dr.dk\/radio\/oversigt.*$'],
+['website/dr.dk/Radio/Spillelister/','^http[s]?:\/\/www.dr.dk\/playlister.*$'],
+['website/dr.dk/Radio/Podcast/','^http[s]?:\/\/www.dr.dk\/podcast.*$|^http[s]?:\/\/www.dr.dk\/.*drpodcast.*$'],
+['website/dr.dk/Radio/','^http[s]?:\/\/www.dr.dk\/radio.*$'],
+['website/dr.dk/TV/TV Boern/TV Boern forside','^http[s]?:\/\/www.dr.dk\/tv\/boern[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk\/tv\/boern[\/]?[?].*$'],
+['website/dr.dk/TV/Se TV/Live TV','^http[s]?:\/\/www.dr.dk\/nu\/live.*$|^http[s]?:\/\/www.dr.dk\/tv\/live.*$'],
+['website/dr.dk/TV/Se TV/Se TV-program','^http[s]?:\/\/www.dr.dk\/dr\/nu-beta.*$|^http[s]?:\/\/www.dr.dk\/nu.*$|^http[s]?:\/\/www.dr.dk\/tv\/se.*$|^http[s]?:\/\/www.dr.dk\/tv-beta\/se.*$'],
+['website/dr.dk/TV/Se TV/Seneste Uge TV','^http[s]?:\/\/www.dr.dk\/tv\/seneste-uge.*$'],
+['website/dr.dk/TV/TV Boern/TV Ramasjang','^http[s]?:\/\/www.dr.dk\/tv\/boern\/ramasjang.*$'],
+['website/dr.dk/TV/TV Boern/TV Ultra','^http[s]?:\/\/www.dr.dk\/tv\/boern\/ultra.*$'],
+['website/dr.dk/TV/Bonanza','^http[s]?:\/\/www.dr.dk\/bonanza.*$'],
+['website/dr.dk/TV/TV-forside/','^http[s]?:\/\/www.dr.dk\/tv[^a-zA-Z]*$|^http[s]?:\/\/www.dr.dk\/tv[\/]?[?].*$'],
+['website/dr.dk/TV/Find program/','^http[s]?:\/\/www.dr.dk\/tv\/programmer.*$|^http[s]?:\/\/www.dr.dk\/tv-beta\/programmer.*$'],
+['website/dr.dk/TV/Tekst-TV/','^http[s]?:\/\/www.dr.dk\/nav\/frekvenser.*$|^http[s]?:\/\/www.dr.dk\/nav\/tekstttv.*$'],
+['website/dr.dk/TV/TV FAQ/','^http[s]?:\/\/www.dr.dk\/tv\/faq.*$'],
+['website/dr.dk/TV/TV Feedback/','^http[s]?:\/\/www.dr.dk\/tv\/feedback.*$'],
+['website/dr.dk/TV/TV Programoversigt/','^http[s]?:\/\/www.dr.dk\/nav\/programoversigt.*$|^http[s]?:\/\/www.dr.dk\/programoversigt.*$|^http[s]?:\/\/www.dr.dk\/tjenester\/programoversigten.*$|^http[s]?:\/\/www.dr.dk\/tv\/oversigt.*$|^http[s]?:\/\/www.dr.dk\/tv-beta\/oversigt.*$'],
+['website/dr.dk/TV/TV soeg/','^http[s]?:\/\/www.dr.dk\/tv\/soeg.*$'],
+['website/dr.dk/TV/TV Tema/','^http[s]?:\/\/www.dr.dk\/tv\/temaer.*$'],
+['website/dr.dk/TV/','^http[s]?:\/\/www.dr.dk\/tv.*$|^http[s]?:\/\/www.dr.dk\/tips-fra-dr.*$'],
+['website/mobil.dr.dk/Forsiden/','^http[s]?:\/\/mobil.dr.dk\/smartphone[\/]?[^a-zA-Z]*$|^http[s]?:\/\/mobil.dr.dk[^a-zA-Z]*$|^http[s]?:\/\/mobil.dr.dk\/smartphone[\/]?[?].*$|^http[s]?:\/\/mobil.dr.dk[\/]?[?].*$|^http[s]?:\/\/www.dr.dk\/tjenester\/mobilframe.$|^http[s]?:\/\/www.dr.dk\/dr\/mobil.$'],
+['website/mobil.dr.dk/DR/Om DR/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*digitalttv.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*findmedarbejder.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*om_dr.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*omdr.*$|^http[s]?:\/\/mobil.dr.dk\/#.*digitalttv.*$|^http[s]?:\/\/mobil.dr.dk\/#.*findmedarbejder.*$|^http[s]?:\/\/mobil.dr.dk\/#.*om_dr.*$|^http[s]?:\/\/mobil.dr.dk\/#.*omdr.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Nyhedsoverblik','^http[s]?:\/\/mobil.dr.dk\/smartphone\/.nyheder[^a-zA-Z]*$|^http[s]?:\/\/mobil.dr.dk\/.nyheder[^a-zA-Z]*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/.nyheder[\/]?[?].*$|^http[s]?:\/\/mobil.dr.dk\/.nyheder[\/]?[?].*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Baggrund','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/baggrund.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/htm\/baggrund.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/baggrund.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/htm\/baggrund.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Billedserier','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/billedserie.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/billedserie.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/billeder.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Indland','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/beredskab.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/indland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/beredskab.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/indland.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Live','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/live.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/live.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Penge','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/htm\/magasiner\/penge.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/penge.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/htm\/magasiner\/penge.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/penge.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Tema nyheder','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*dr.dk\/nyheder\/tema.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/infografik.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/tema.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/temaer.*$|^http[s]?:\/\/mobil.dr.dk\/#.*dr.dk\/nyheder\/tema.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/infografik.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/tema.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/temaer.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Udland/USA Valg16','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/udland\/valg-i-usa-2016.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/udland\/valg-i-usa-2016.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Nyheder/Udland','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/udland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/udland.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Politik/Kandidattesten','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/politik\/kv13\/kommuner\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/politik\/valg2015\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*tjenester\/event-fv15\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/politik\/kv13\/kommuner\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/politik\/valg2015\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/#.*tjenester\/event-fv15\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/#.*\/nyheder\/politik\/eu15\/valgtest.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/politik\/.*\/kandidat-testen.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/politik\/.*\/kandidat-testen.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Politik/Valg','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/politik\/valg16.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/politik\/valg16.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Politik/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/politik.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/fv15.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/politik.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/fv15.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Bornholm','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/bornholm.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/bornholm.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4bornholm.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/bornholm.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/bornholm.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4bornholm.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Esbjerg','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/esbjerg.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/esbjerg.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4esbjerg.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/esbjerg.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/esbjerg.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4esbjerg.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Fyn','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/fyn.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/fyn.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4fyn.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*programserier\/radio\/p4fyn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/fyn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/fyn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4fyn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*programserier\/radio\/p4fyn.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Koebenhavn','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/kbh\/nyheder\/koebenhavn.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/koebenhavn.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4kbh.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/kbh\/nyheder\/koebenhavn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/koebenhavn.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4kbh.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*\/nyheder\/regionale\/hovedstadsomraadet.*$|^http[s]?:\/\/mobil.dr.dk\/#.*\/nyheder\/regionale\/hovedstadsomraadet.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/MidtVest','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/vest\/nyheder\/midtvest.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4vest.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/midtvest.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/vest\/nyheder\/midtvest.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4vest.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/midtvest.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Nordjylland','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/nord.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/nordjylland.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4nord.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*programserier\/radio\/p4nord.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/nord.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/nordjylland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4nord.*$|^http[s]?:\/\/mobil.dr.dk\/#.*programserier\/radio\/p4nord.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Sjaelland','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/sjaelland.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4sjaelland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/sjaelland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4sjaelland.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Syd','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/syd.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/syd.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4syd.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/syd.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/syd.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4syd.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Trekanten','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp4\/trekanten.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/trekanten.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4trekanten.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp4\/trekanten.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/trekanten.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4trekanten.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/Oestjylland','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/regionale\/oestjylland.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p4aarhus.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/regionale\/oestjylland.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p4aarhus.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Regionale nyheder/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#region.*$|^http[s]?:\/\/mobil.dr.dk\/#region.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Debat/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/debat.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/debat.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Kultur/Roskilde','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/kultur\/roskilde.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/kultur\/roskilde.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Kultur/Smukfest','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/kultur\/smukfest.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/kultur\/smukfest.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Kultur/Northside','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/kultur\/northside.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/kultur\/northside.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Kultur/Tinderbox','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/kultur\/tinderbox.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/kultur\/tinderbox.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Kultur/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/allenyheder\/kultur.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/kultur.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/allenyheder\/kultur.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/kultur.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Lev Nu/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*levnu.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/allenyheder\/levnu.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/levlivet.*$|^http[s]?:\/\/mobil.dr.dk\/#.*levnu.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/allenyheder\/levnu.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/levlivet.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Lige til/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/ligeti.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/ligeti.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Sporten/OL','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sport.*\/ol.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sport.*\/ol.*$|^http[s]?:\/\/mobil.dr.dk\/.*nyheder\/webdok\/rio-2016.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Sporten/Fodbold Slutrunde','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sport.*\/uefa-em-2016.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sport.*\/uefa-em-2016.$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Sporten/HÃ¥ndbold Slutrunde','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sport.*\/haandbold-em.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sport.*\/haandbold-em.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sport.*\/haandbold\/em-kvinder.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sport.*\/haandbold\/em-kvinder.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Sporten/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/allenyheder\/sporten.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sport.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/allenyheder\/sporten.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sport.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Sundhed/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*sundhed\/.*$|^http[s]?:\/\/mobil.dr.dk\/#.*sundhed\/.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/TV nyheder/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/lydogvideo.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/radioprogrammer.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/tv-nyheder.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/lydogvideo.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/radioprogrammer.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/tv-nyheder.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Vejret/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/allenyheder\/vejret.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/vejret.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/allenyheder\/vejret.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/vejret.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#vejret.*$|^http[s]?:\/\/mobil.dr.dk\/#vejret.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Viden/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/allenyheder\/viden.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/viden.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/allenyheder\/viden.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/viden.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/Webdok/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/webdok.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/webdok.*$'],
+['website/mobil.dr.dk/Nyhedsomraadet/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*nyheder\/.*$|^http[s]?:\/\/mobil.dr.dk\/#.*nyheder\/.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P1','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp1.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p1.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p1arkiv.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp1.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p1.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p1arkiv.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P2','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp2.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p2.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp2.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p2.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P3','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*arkivp3.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p3.*$|^http[s]?:\/\/mobil.dr.dk\/#.*arkivp3.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p3.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P5','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p5.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p5.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P6 Beat','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p6beat.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p6beat.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P7 Mix','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p7mix.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p7mix.*$'],
+['website/mobil.dr.dk/Radio/Radiokanalsider/P8 Jazz','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*p8jazz.*$|^http[s]?:\/\/mobil.dr.dk\/#.*p8jazz.*$'],
+['website/mobil.dr.dk/Radio/Musik/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*musik.*$|^http[s]?:\/\/mobil.dr.dk\/#.*musik.*$'],
+['website/mobil.dr.dk/Radio/Radiodrama og lydbog/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*radio\/drama-lydbog.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*radio\/lydbog.*$|^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*radio\/radiodrama.*$|^http[s]?:\/\/mobil.dr.dk\/#.*radio\/drama-lydbog.*$|^http[s]?:\/\/mobil.dr.dk\/#.*radio\/lydbog.*$|^http[s]?:\/\/mobil.dr.dk\/#.*radio\/radiodrama.*$'],
+['website/mobil.dr.dk/Radio/Podcast/','^http[s]?:\/\/mobil.dr.dk\/smartphone\/#.*podcast.*$|^http[s]?:\/\/mobil.dr.dk\/#.*podcast.*$'],
+['website/dr.dk/Test/TestCP','^http[s]?:\/\/www.dr.dk\/drxml\/.*$'],
+['website/mobil.dr.dk/Skraldespand/','^http[s]?:\/\/mobil.dr.dk.*'],
+['website/dr.dk/Skraldespand/','^http[s]?:\/\/.*']
+            ],
+            Stopwatch: function() {
+                var startTime, endTime, instance = this;
+                this.start = function () { startTime = new Date(); }
+                this.stop = function () { endTime = new Date(); }
+                this.clear = function () {
+                    startTime = null;
+                    endTime = null;
+                }
+                this.getMilliseconds = function () {
+                    if (!endTime) return 0;
+                    return (endTime.getTime() - startTime.getTime());
+                }
+                this.getSeconds = function () {
+                    if (!endTime) return 0;
+                    return Math.round((endTime.getTime() - startTime.getTime()) / 1000);
+                }
+                this.getMinutes = function () { return instance.getSeconds() / 60; }
+                this.getHours = function () { return instance.getSeconds() / 60 / 60; }
+                this.getDays = function () { return instance.getHours() / 24; }
+            },
+            Search: function() {
+
+                var uri = location.href.toLowerCase();
+                //var stopWatch = new this.Stopwatch();
+                //stopWatch.clear();
+                //stopWatch.start();
+
+                for (var k in this.inddeling) {
+                    //if (k == 0) continue;
+                    var re = new RegExp('(' + this.inddeling[k][1] + ')', 'ig');
+                    if (re.test(uri)) {
+                        //stopWatch.stop();
+                        //document.getElementById("elapseTime").innerHTML = "elapsetime: " + stopWatch.getMilliseconds() + " ms";
+                        return this.inddeling[k][0];
+                    }
+                    // ReSharper disable once AssignedValueIsNeverUsed
+                    re = null;
+                }
+                //stopWatch.stop();
+
+                //console.log("elapsetime: " + stopWatch.getMilliseconds() + " ms");
+                //document.getElementById("elapseTime").innerHTML = "elapsetime: " + stopWatch.getMilliseconds() + " ms";
+                return "";
+            },
+            ajax_hit: function() {
+                // ReSharper disable ConditionIsAlwaysConst
+                if (typeof (window.cpGallup) == "undefined") {
+                    // ReSharper disable once InconsistentNaming
+                    // ReSharper disable once AssignedValueIsNeverUsed
+                    window.cpGallup = "";
+                }
+                // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+                // ReSharper disable UseOfImplicitGlobalInFunctionScope
+                // ReSharper restore UseOfImplicitGlobalInFunctionScope
+                if (window.urlGallup == "") {
+                    window.urlGallup = document.location.href.toLowerCase();
+                }
+                if (window.cpGallup == "") {
+                    if (window.urlGallup != null && window.urlGallup.search("app_mode=true") == -1 && window.urlGallup.search("mobile=false") == -1 && window.urlGallup.search("ultra/tv/custom/ultra") == -1) {
+                        window.cpGallup = gallup_stat.Search();
+                        window.springq =  [];
+                        window.springq.push({
+                            "s": "dr", //Site 
+                            "cp": window.cpGallup, //ContentPath(CP) 
+                            "url": urlGallup //Url
+                        });
+                        (function() {
+                            var scr = document.createElement('script');
+                            scr.type = 'text/javascript';
+                            scr.async = true;
+                            scr.src = '//www.dr.dk/drwebstat/spring.js'; //her sættes stien til hvor i placer den medsendte spring.js fil
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(scr, s);
+                        })();
+                    }
+                }
+            }
+        }
+    }
+
+
+    var urlGallup = '';
+    var cpGallup = '';
+    if (typeof(document) != 'undefined' && typeof(document.location) != 'undefined' && typeof(document.location.href) != 'undefined') {
+        urlGallup = document.location.href.toLowerCase();
+        if (urlGallup != null && urlGallup.search("app_mode=true") == -1 && urlGallup.search("mobile=false") == -1 && urlGallup.search("ultra/tv/custom/ultra") == -1) {
+            //var LocationPathName = document.location.pathname.toLowerCase().split("/");
+            //var idxSlash = 1;
+            //while (LocationPathName.length > idxSlash && idxSlash < 7) {
+            //    if (LocationPathName[idxSlash].indexOf('.') == -1 && LocationPathName[idxSlash] != 'undefined' && LocationPathName[idxSlash] != 'frontpage' && LocationPathName[idxSlash] != 'index' && LocationPathName[idxSlash] != 'forside' && LocationPathName[idxSlash] != '' && LocationPathName[idxSlash].length < 21) cpGallup += '/' + LocationPathName[idxSlash];
+            //    idxSlash++;
+            //}
+            cpGallup = gallup_stat.Search();
+            window.springq = [];
+            window.springq.push({
+                "s": "dr", //Site 
+                "cp": cpGallup, //ContentPath(CP) 
+                "url": urlGallup //Url
+            });
+            (function() {
+                var scr = document.createElement('script');
+                scr.type = 'text/javascript';
+                scr.async = true;
+                scr.src = '//www.dr.dk/drwebstat/spring.js'; //her sættes stien til hvor i placer den medsendte spring.js fil
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(scr, s);
+            })();
+        }
+    }
+} catch (err) {
+    //console.log(err.toString());
+} 
+// ...ended Gallup system v/ Fritz Stoltze Mikkelsen 24. nov 2015 
+
+
+//  DR Url system v/ Fritz Stoltze Mikkelsen 19. feb. 2014
+
+
+try {
+    if (typeof window.DR_Url=="undefined") {
+        var DR_Url = "Used";
+        var xmlhttp = new XMLHttpRequest();
+	
+        if (document && document.location && document.location.href) {
+            var href = document.location && document.location.href;
+            if (href.indexOf("?")!=-1){
+                href=href.substr(0,href.indexOf("?"));
+            }
+            var norm_url = href.toLowerCase();
+            if (norm_url.indexOf("https://") == 0) norm_url = "http:" + norm_url.substr(6);
+            xmlhttp.open("GET","//www.dr.dk/drwebstat/Url.js?"+norm_url, true);
+            xmlhttp.setRequestHeader("Cache-Control", "no-cache");
+            var cookieID = "-";
+            
+            var startOfCookieID = document.cookie.indexOf("_ga=");
+            if (document.cookie.length > 0 &&  startOfCookieID!= -1) {
+                var endOfCookie = document.cookie.indexOf(";", startOfCookieID);
+                if (endOfCookie == -1) endOfCookie = document.cookie.length > 40 ? 40 : document.cookie.length;
+                cookieID = document.cookie.slice(startOfCookieID, endOfCookie);
+            }
+            
+            xmlhttp.setRequestHeader("X-ga", cookieID);
+            xmlhttp.setRequestHeader("Accept", "*/*");
+            xmlhttp.setRequestHeader("Server", "www.dr.dk");
+            xmlhttp.send();
+        }
+    }
+}
+catch(err) {} 	
+
+// Adserving Banner system v/ Fritz Stoltze Mikkelsen 19. marts 2013
+
+try {
+    if (typeof window.DR_adspaces!='undefined') {
+		
+        for (var i=0; i<window.DR_adspaces.length;i++) {
+
+            //console.log("Processing index: " + i);
+
+            var jsonObj = window.DR_adspaces[i];
+            //console.log(jsonObj);
+
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("GET","/drwebstat/adspaces.js?c="+jsonObj.c+"&b="+jsonObj.b+"&a="+jsonObj.a, true);
+            xmlhttp.setRequestHeader("Cache-Control", "no-cache");
+            xmlhttp.setRequestHeader("Accept", "*/*");
+            xmlhttp.setRequestHeader("Server", "www.dr.dk");
+            xmlhttp.send();
+        }
+    }
+    (function() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.src = "//www.dr.dk/creatives/api/v1/loadjs/creatives";
+        //script.src = "//www.dr.dk/DRwebstat/creatives.js";
+        var first = document.getElementsByTagName("script")[0];
+        first.parentNode.insertBefore(script, first);
+    })();
+
+}
+catch(err) {} 	
+
+var ghmxy_align = 'center'; 
+var ghmxy_type = 'absolute';
+var ghmxy_identifier = 'p4NLAn8NdJciBFlWB55mSJSqzUs6UsOeGmGB8L3NEM7.Y7';
+
+// (c) DR Fritz S Mikkelsen 12. feb 2007
+// modified: Fritz S Mikkelsen 7.juli 2009 - only  www.dr.dk must be registered
+if (typeof gemius_stat == 'undefined') {
+    var gemius_stat = { 
+        inddeling : [  
+   [['/Øvrige'],['www.dr.dk.*'],['ogI1j3bdOQdPBhB7RETBRpSsrkH61mcPRXGLvqvPykb.17']]
+        ]
+       ,Search : function()
+       {
+           var uri = location.href.toLowerCase();
+           var tag = '0mtK5uc7T02_MCNiEIkMIJRp.qf6PYds6Cll6PvOAsr.v7';  
+            
+	        
+           if (uri=='') return tag;
+           //tv-app or ultra- app
+           if (uri.search("app_mode=true")>=0 || uri.search("ultra/tv/custom/ultra") >=0 ) return 'ctVFzQdn4VSfhGIyuXosetU5XtcNE2M4NLcFSktRnB3.77';
+           //nyheds-app
+           if (uri.search("mobile=false")>=0)  return '0srlpue.0SMU9h2CrScZENU5LTANE08LB5HSrvMr5Gb.q7';
+          
+           for (var k in this.inddeling)
+           {
+               var re = new RegExp('(^[http:|https:]//'+this.inddeling[k][1]+')','ig');
+               if (re.test(uri))
+               {	 
+                   return this.inddeling[k][2][0];
+               }   
+               // ReSharper disable once AssignedValueIsNeverUsed
+               re=null;
+           }        
+           return tag;       
+       },
+        ajax_hit: function () {
+            // ReSharper disable ConditionIsAlwaysConst
+            if (typeof( pp_gemius_identifier) == "undefined") {
+                // ReSharper disable once InconsistentNaming
+                // ReSharper disable once AssignedValueIsNeverUsed
+                var pp_gemius_identifier = "";
+            }
+            pp_gemius_identifier = this.Search();
+            // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+            // ReSharper disable UseOfImplicitGlobalInFunctionScope
+            // ReSharper restore UseOfImplicitGlobalInFunctionScope
+            try {
+                if (typeof(window.Drupal) == 'undefined' || typeof(window.Drupal.settings) == 'undefined' || typeof(window.Drupal.settings.publishedDate) == 'undefined' || typeof(window.Drupal.settings.articleType) == 'undefined') {
+                    window.pp_gemius_extraparameters = '';
+                }
+                else {
+                    var pDate = new Date(parseInt(window.Drupal.settings.publishedDate) * 1000);
+                    var M = (pDate.getMonth() + 1) < 10 ? '0' + (pDate.getMonth() + 1) : pDate.getMonth() + 1;
+                    var D = pDate.getDate() < 10 ? '0' + pDate.getDate() : pDate.getDate();
+                    var articleType = 'artikelType=artikel';
+                    if (typeof (window.Drupal.settings.articleType) != 'undefined') articleType = 'artikelType=' + window.Drupal.settings.articleType.toLowerCase();
+                    var dato = 'Dato=' + pDate.getFullYear() + '-' + M + '-' + D;
+                    window.pp_gemius_extraparameters = new Array(articleType,dato); 
+                }
+            } catch(err) {
+                //  we ignore errors
+            }
+            if (typeof (pp_gemius_hit) == "function") pp_gemius_hit(pp_gemius_identifier);
+        
+            try {
+                var xmlhttp = new XMLHttpRequest(); 	
+                if (document && document.location && document.location.href){
+                    var hrefArray = document.location.href.toLowerCase().split("#");
+                    var href = hrefArray[0];
+                    if (hrefArray.length > 1) {
+                        href = href + hrefArray[1];
+                    }	
+                    var norm_url = href.toLowerCase();
+                    if (norm_url.indexOf("https://") == 0) norm_url = "http:" + norm_url.substr(6);
+                    xmlhttp.open("GET","//www.dr.dk/drwebstat/Url.js?"+norm_url, true);
+          
+                    xmlhttp.setRequestHeader("Cache-Control", "no-cache");
+                    xmlhttp.setRequestHeader("Accept", "*/*");
+                    var cookieID = "-";
+                    var startOfCookieID = document.cookie.indexOf("_ga=");
+                    if (document.cookie.length > 0 && startOfCookieID != -1) {
+                        var endOfCookie = document.cookie.indexOf(";",startOfCookieID);
+                        if (endOfCookie == -1) endOfCookie = document.cookie.length>40?40:document.cookie.length;
+                        cookieID = document.cookie.slice(startOfCookieID, endOfCookie);
+                        xmlhttp.setRequestHeader("X-ga", cookieID);
+                    }
+                    
+                    xmlhttp.setRequestHeader("Server", "www.dr.dk");
+                    xmlhttp.send();			
+                }		
+            }
+            catch(err) {}; 	
+        }        
+    }
+}
+
+if (typeof pp_gemius_identifier == 'undefined' || pp_gemius_identifier=='0mtK5uc7T02_MCNiEIkMIJRp.qf6PYds6Cll6PvOAsr.v7'||pp_gemius_identifier=="")  pp_gemius_identifier = gemius_stat.Search();
+// Support for Drupal sites by Fritz S Mikkelsen 27.april 2015 begin ...
+try {
+    pp_gemius_extraparameters = new Array(); 
+
+    if (typeof Drupal !== 'undefined' && typeof Drupal.settings !== 'undefined' && typeof Drupal.settings.publishedDate !== 'undefined' && typeof Drupal.settings.articleType !== 'undefined') {
+        var pDate = new Date(parseInt(Drupal.settings.publishedDate) * 1000);
+        var M = (pDate.getMonth() + 1) < 10 ? '0' + (pDate.getMonth() + 1) : pDate.getMonth() + 1;
+        var D = pDate.getDate() < 10 ? '0' + pDate.getDate() : pDate.getDate();
+        var articleType = 'artikelType=artikel';
+        if (typeof (Drupal.settings.articleType) != 'undefined') articleType = 'artikelType=' + Drupal.settings.articleType.toLowerCase();
+        var dato = 'Dato=' + pDate.getFullYear() + '-' + M + '-' + D;
+        pp_gemius_extraparameters.push(articleType,dato); 
+    }
+
+    if (window.Metadata !== undefined){
+        if(window.Metadata.site !== undefined){
+            pp_gemius_extraparameters.push('site=' + window.Metadata.site);
+        }
+    }
+
+} catch(err) {
+    //  we ignore errors
+}
+//...end Support for Drupal sites by Fritz S Mikkelsen 27.april 2015 
+// \\WMI02\Dokumentation\Statistik\Guidelines_for_LS_transition.doc
+(function(d,t) {
+    // var ex; 
+    try {
+        if (document && document.location && document.location.href) {
+            var href = document.location && document.location.href;
+            // Fritz 5.marts 2015 fjernet pga TV-apps skal tælles (x-factor skal også tælles) begin... 
+            //if (href.indexOf('app_mode=true') == -1) {
+            var gt = d.createElement(t), s = d.getElementsByTagName(t)[0], l = 'http' + ((location.protocol == 'https:') ? 's' : '');
+            gt.async = 'true';
+            gt.src = l + '://gadk.hit.gemius.pl/gemius.js';
+            s.parentNode.insertBefore(gt, s);
+            //}// Fritz 5.marts 2015 fjernet pga TV-apps skal tælles (x-factor skal også tælles)  
+          
+        }
+    } catch (ex) {}
+}(document,'script'));
+
+
+//.... start of exclude area for minimized webstat
+window.DR.webstat = window.DR.webstat || {};
+//if (typeof (window.DR.webstat.minimized) === "undefined" || window.DR.webstat.minimized === false  ) {
+// common
+// (c) by Gemius SA - gemiusHeatMap
+if (typeof ghmxy_hitcollector=='undefined') {
+    var ghmxy_hitcollector='gadk.hit.gemius.pl';
+}
+var ghmxy_proto;
+if(document.location && document.location.protocol) {
+    ghmxy_proto = 'http'+((document.location.protocol=='https:')?'s':'')+'://';
+} else {
+    ghmxy_proto = 'http://';
+}
+
+
+// (c) by Gemius SA - gemiusHeatMap
+// ver. 4.11
+
+var ghmxy_images = new Array();
+
+function ghmxy_checklink(node) {
+    var imn	= null;
+    if (node.nodeName == "#text") {
+        if (node.nodeValue && node.nodeValue.replace(/[ \t\r\n]+/g,"").length > 0) {
+            return node;
+        }
+        return null;
+    }
+    if (node.nodeName == "IMG") {
+        return node;
+    }
+    if (node.childNodes) {
+        for (var i = 0 ; i < node.childNodes.length ; i++) {
+            var hn = ghmxy_checklink(node.childNodes[i]);
+            if (hn != null) {
+                if (hn.nodeName == "#text") return hn;
+                if (imn == null) imn = hn;
+            }
+        }
+    }
+    return imn;
+}
+
+function ghmxy_toutf8(str) {
+    // ReSharper disable once InconsistentNaming
+    function Hex(n) {
+        var hexMap = '0123456789ABCDEF';
+        return '%'+hexMap.charAt(n>>4)+hexMap.charAt(n&0xF);
+    }
+    var c,s,uc;
+    var dst = '';
+    for (var i=0 ; i<str.length ; i++) {
+        c = str.charCodeAt(i);
+        if ((c>=0xDC00)&&(c<0xE000)) continue;
+        if ((c>=0xD800)&&(c<0xDC00)) {
+            i++;
+            if (i>=str.length) continue;
+            s = str.charCodeAt(i);
+            if ((s<0xDC00)||(s>=0xDE00)) continue;
+            c = ((c-0xD800)<<10)+(s-0xDC00)+0x10000;
+        }
+        if (c<=0x20 || c==0x22 || c==0x7C) {
+            uc = Hex(c);
+        } else if (c<0x80) {
+            uc = String.fromCharCode(c);
+        } else if (c<0x800) {
+            uc = Hex(0xC0+(c>>6))+Hex(0x80+(c&0x3F));
+        } else if (c<0x10000) {
+            uc = Hex(0xE0+(c>>12))+Hex(0x80+(c>>6&0x3F))+Hex(0x80+(c&0x3F));
+        } else {
+            uc = Hex(0xF0+(c>>18))+Hex(0x80+(c>>12&0x3F))+Hex(0x80+(c>>6&0x3F))+Hex(0x80+(c&0x3F));
+        }
+        dst+=uc;		
+    }
+    return dst;
+}
+
+function ghmxy_url_escape(str) {
+    return ghmxy_toutf8(str).replace(/\x2520|\x2509|\x250[aA]|\x250[dD]/g, "");
+}
+
+function ghmxy_load() {
+    if (document.getElementById && document.getElementsByTagName) {
+        var allImages = document.getElementsByTagName("img");
+        var allInputs = document.getElementsByTagName("input");
+        var allForms = document.getElementsByTagName("form");
+        var i;
+        if (allImages) {
+            for (i=0; i<allImages.length; i++) {
+                if (typeof(allImages[i].src) != "undefined") {
+                    allImages[i].ghmxy_src = allImages[i].src;
+                }
+            }
+        }
+        if (allInputs) {
+            for (i=0; i<allInputs.length; i++) {
+                if (typeof(allInputs[i].value) != "undefined") {
+                    allInputs[i].ghmxy_value = allInputs[i].value;
+                }
+                if (typeof(allInputs[i].src) != "undefined") {
+                    allInputs[i].ghmxy_src = allInputs[i].src;
+                }
+            }
+        }
+        if (allForms) {
+            for (i=0; i<allForms.length; i++) {
+                if (typeof(allForms[i].action) != "undefined") {
+                    allForms[i].ghmxy_action = allForms[i].action;
+                }
+            }
+        }
+    }
+}
+
+function ghmxy_gettext(node) {
+    var rettext="";
+    if (node.nodeName=="#text") {
+        return node.nodeValue;
+    } else if (node.nodeName=="IMG") {
+        // ReSharper disable once AssignedValueIsNeverUsed
+        var src="";
+        var alt="";
+        if (node.ghmxy_src) {
+            src = node.ghmxy_src;
+        } else {
+            src = node.src;
+        }
+        if (node.alt) {
+            alt = node.alt;
+        }
+        return "img:"+ghmxy_url_escape(src)+":"+alt;
+    } else if (node.childNodes) {
+        for (var i=0 ; i<node.childNodes.length ; i++) {
+            if (node.childNodes[i].nodeName!='A') {
+                rettext+=" "+ghmxy_gettext(node.childNodes[i]);
+            }
+        }
+    }
+    return rettext;
+}
+
+function ghmxy_checksum(itext,pos) {
+    var cs=0;
+    // ReSharper disable once InconsistentNaming
+    var b64map=".ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_";
+    for (var n = pos; n < itext.length; n++) {
+        cs = ((cs * 13) + itext.charCodeAt(n))&0xFFF;
+    }
+    return b64map.charAt((cs>>6)&0x3F)+b64map.charAt(cs&0x3F);
+}
+
+
+function ghmxy_escape(str,limit,csflag) {
+    // ReSharper disable once InconsistentNaming
+    function Hex(n) {
+        var hexMap = "0123456789ABCDEF";
+        return hexMap.charAt(n>>4)+hexMap.charAt(n&0xF);
+    }
+    var c,s,uc,ul;
+    var dst = "";
+    for (var i=0 ; i<str.length ; i++) {
+        c = str.charCodeAt(i);
+        if ((c>=0xDC00)&&(c<0xE000)) continue;
+        if ((c>=0xD800)&&(c<0xDC00)) {
+            i++;
+            if (i>=str.length) continue;
+            s = str.charCodeAt(i);
+            if ((s<0xDC00)||(s>=0xE000)) continue;
+            c = ((c-0xD800)<<10)+(s-0xDC00)+0x10000;
+        }
+        if (c<0x80) {
+            // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+            uc = escape(String.fromCharCode(c)).replace(/\+/g,"%2B").replace(/\//g,"%2F");
+            if (c<=0x20) {
+                ul=3;
+            } else {
+                ul=1;
+            }
+        } else if (c<0x800) {
+            uc = "%u"+Hex(c>>8)+Hex(c&0xFF);
+            ul = 2;
+        } else if (c<0x10000) {
+            uc = "%u"+Hex(c>>8)+Hex(c&0xFF);
+            ul = 3;
+        } else {
+            uc = "%U"+Hex((c>>24)&0xFF)+Hex((c>>16)&0xFF)+Hex((c>>8)&0xFF)+Hex(c&0xFF);
+            ul = 4;
+        }
+        limit -= ul;
+        if (limit<0) {
+            if (csflag) {
+                return dst+"|"+ghmxy_checksum(str,i);
+            } else {
+                return dst;
+            }
+        }
+        dst+=uc;		
+    }
+    if (csflag) {
+        return dst+"|";
+    } else {
+        return dst;
+    }
+}
+
+function ghmxy_send(mhref,area,ltext,lid) {
+    var href=ghmxy_url_escape(new String(document.location.href));
+    mhref=ghmxy_url_escape(mhref);
+    ltext=ltext.replace(/[ \t\r\n]+/g," ").replace(/^ /,"").replace(/ $/,"").replace(/\x22|\||\x2520/g,"_");
+    area=area.replace(/;|&|\//g,"_");
+    lid=lid.replace(/;|&|\/|\|/g,"_");
+    // ReSharper disable once InconsistentNaming
+    var ghmxy_url = ghmxy_proto+ghmxy_hitcollector+"/_"+(new Date()).getTime()+"/redot.gif?l=1&id="+ghmxy_identifier+"&sarg="+ghmxy_escape(ltext,190,1)+"|"+ghmxy_escape(area,50,0)+"&ref=http%3A%2F%2F0.0.0.0%2F"+ghmxy_escape(mhref,230,1)+"|"+ghmxy_escape(lid,50,0)+"&href="+ghmxy_escape(href,299,0);
+    // ReSharper disable once InconsistentNaming
+    var ghmxy_image = new Image();
+    ghmxy_image.src = ghmxy_url;
+    ghmxy_images[ghmxy_images.length] = ghmxy_image;
+    var start = (new Date()).getTime();
+    // Fritz & JASE 27.april 2015 We dont think this is needed!
+    //while (start+200>(new Date()).getTime());
+}
+
+function ghmxy_hm_click(ev) {
+    var p=0;
+    var np=0;
+    var ln=0;
+    var ocln=0;
+    var fform=0;
+    var imgclick=0;
+    var mhref="",ocmhref="",path="",ltext="",ocltext="",lid="";
+    if (document.getElementById) {
+        if (!window.event) { 
+            p=ev.target;
+        } else {
+            p=window.event.srcElement;
+        }
+        try {
+            if (p.nodeName == "A") {
+                var cp = ghmxy_checklink(p);
+                if (cp != null && cp.nodeName == "IMG") p = cp;
+            }
+            if (p.nodeName=="INPUT" || p.nodeName=="BUTTON") {
+                if (p.type=="submit") {
+                    var value="";
+                    if (p.ghmxy_value) {
+                        value = p.ghmxy_value;
+                    } else {
+                        value = p.value;
+                    }
+                    ltext="formsubmit:"+value;
+                    fform=1;
+                }
+                if (p.type=="image") {
+                    var src="";
+                    if (p.ghmxy_src) {
+                        src = p.ghmxy_src;
+                    } else {
+                        src = p.src;
+                    }
+                    ltext="formimage:"+ghmxy_url_escape(src);
+                    fform=1;
+                }
+            } else if (p.nodeName=="IMG") {
+                imgclick=1;
+            }
+            while (p) {
+                if (!ocln && p.attributes && p.attributes.getNamedItem) {
+                    // ReSharper disable once AssignToImplicitGlobalInFunctionScope
+                    ocnode = p.attributes.getNamedItem("onclick");
+                    if (ocnode && ocnode.nodeValue) {
+                        ocln=p;
+                        ocmhref="hmc="+ocnode.nodeValue;
+                        ocltext=p.nodeName+" "+ghmxy_gettext(p);
+                    }
+                }
+                if (!ln) {
+                    if (p.nodeName=="AREA" && typeof(p.href)=="string" && p.href!="") {
+                        ln=p;
+                        mhref="hma="+p.href;
+                        ltext = p.shape+" "+p.coords;
+                    }
+                    if (p.nodeName=="A" && typeof(p.href)=="string" && p.href!="") {
+                        ln=p;
+                        if (imgclick) {
+                            mhref="hmi="+p.href;
+                        } else {
+                            mhref="hml="+p.href;
+
+                        }
+                        if (typeof(p.className)=="string" && p.className!="") {
+                            ltext=p.className+" "+ghmxy_gettext(p);
+                        } else {
+                            ltext=ghmxy_gettext(p);
+                        }
+                    }
+                    if (fform && p.nodeName=="FORM") {
+                        if (typeof(p.ghmxy_action)=="string" && p.ghmxy_action!="") {
+                            ln=p;
+                            mhref="hmf="+p.ghmxy_action;
+                        } else if (p.attributes && p.attributes.getNamedItem) {
+                            // ReSharper disable once AssignToImplicitGlobalInFunctionScope
+                            osnode = p.attributes.getNamedItem("onsubmit");
+                            if (osnode && osnode.nodeValue) {
+                                ln=p;
+                                mhref="hms="+p.attributes.getNamedItem("onsubmit").nodeValue;
+                            }
+                        }
+                    }
+                }
+                if (typeof(p.id)=="string" && (ln || ocln)) {
+                    if (p.id.substr(0,7)=="LinkID:") {
+                        lid=p.id.replace(/\x2520/g,"_").substr(7,50);
+                    }
+                    if (p.id.substr(0,9)=="LinkArea:") {
+                        // ReSharper disable once AssignToImplicitGlobalInFunctionScope
+                        pel=p.id.replace(/\x2520/g,"_").substr(9,10);
+                        if (path) {
+                            path=pel+"|"+path;
+                        } else {
+                            path=pel; 
+                        } 
+                    }
+                }
+                np = 0;
+                if (typeof(p.parentNode)=="object") {
+                    var pp = p.parentNode;
+                    if (pp && pp.childNodes) {
+                        for (var ch=0 ; ch<pp.childNodes.length ; ch++) {
+                            if (pp.childNodes[ch] == p) {
+                                np=pp;
+                            }
+                        }
+                    }
+                }
+                p=np;
+            }
+            if (ln) {
+                ghmxy_send(mhref,path,ltext,lid);
+            } else if (ocln) {
+                ghmxy_send(ocmhref,path,ocltext,lid);
+            }
+            // ReSharper disable once InconsistentNaming
+        } catch (_ev) {
+        }
+    }
+}
+
+
+// (c) by Gemius SA - gemiusHeatMapXY
+// ver. 2.3
+
+if (typeof(ghmxy_type)=='undefined' || (ghmxy_type!='percent' && ghmxy_type!='absolute')) {
+    var ghmxy_type='x';
+} else {
+    ghmxy_type = ghmxy_type.substr(0,1);
+}
+if (typeof(ghmxy_align)=='undefined' || (ghmxy_align!='left' && ghmxy_align!='center' && ghmxy_align!='right')) {
+    var ghmxy_align='x';
+} else {
+    ghmxy_align = ghmxy_align.substr(0,1);
+}
+
+var ghmxy_heat_map_image = new Image();
+var ghmxy_values = '';
+var ghmxy_sarg = '';
+
+function ghmxy_save() {
+    if (ghmxy_values != '') {
+        // ReSharper disable once InconsistentNaming
+        var ghmxy_clickvalues = ghmxy_values;
+        ghmxy_values='';	// clear ghmxy_values as fast as possible (race condition !!!)
+        var href = new String(document.location.href);
+        // ReSharper disable once InconsistentNaming
+        // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+        var ghmxy_link = ghmxy_proto+ghmxy_hitcollector+'/_'+(new Date()).getTime()+'/redot.gif?l=2&id='+ghmxy_identifier+'&arg=1&sarg='+ghmxy_sarg+'&href='+escape(href.substring(0,299))+'&ref=http%3A%2F%2F0.0.0.0%2Fxy%3D'+ghmxy_clickvalues;
+        ghmxy_heat_map_image.src = ghmxy_link;
+    }
+}
+
+function ghmxy_heat_map_add_event(ob,evname,fn) {
+    if (ob.attachEvent) {
+        ob.attachEvent("on"+evname,fn);
+    } else if(ob.addEventListener) {
+        ob.addEventListener(evname,fn, false);
+    }
+}
+
+
+// ReSharper disable InconsistentNaming
+function ghmxy_get_correct_data (n_win, n_docel, n_body) {
+    // ReSharper restore InconsistentNaming
+    // ReSharper disable once InconsistentNaming
+    var n_result = n_win ? n_win : 0;
+    if (n_docel && (!n_result || (n_result > n_docel))) {
+        n_result = n_docel;
+    }
+    return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
+}
+
+function ghmxy_width() {
+    return ghmxy_get_correct_data (window.innerWidth ? window.innerWidth : 0, document.documentElement ? document.documentElement.clientWidth : 0, document.body ? document.body.clientWidth : 0);
+}
+
+function ghmxy_height() {
+    return ghmxy_get_correct_data (window.innerHeight ? window.innerHeight : 0, document.documentElement ? document.documentElement.clientHeight : 0, document.body ? document.body.clientHeight : 0);
+}
+
+function ghmxy_posx() {
+    return ghmxy_get_correct_data (window.pageXOffset ? window.pageXOffset : 0, document.documentElement ? document.documentElement.scrollLeft : 0, document.body ? document.body.scrollLeft : 0);
+}
+
+function ghmxy_posy() {
+    return ghmxy_get_correct_data (window.pageYOffset ? window.pageYOffset : 0, document.documentElement ? document.documentElement.scrollTop : 0, document.body ? document.body.scrollTop : 0);
+}
+
+function ghmxy_heat_map_refresh_window_params() {
+    var wparam = 'r'+screen.width+','+screen.height+'|s'+ghmxy_width()+','+ghmxy_height()+'|a'+ghmxy_align.substr(0,1)+'|t'+ghmxy_type.substr(0,1)+'|m'+ghmxy_posx()+','+ghmxy_posy()+'|p';
+    if (document.body && typeof(document.body.scrollWidth)!='undefined' && typeof(document.body.scrollHeight)!='undefined') {
+        wparam += document.body.scrollWidth+','+document.body.scrollHeight;
+    }
+    return wparam;
+}
+
+function ghmxy_xy_click(ev) {
+    if (ghmxy_values=='') {
+        ghmxy_sarg = ghmxy_heat_map_refresh_window_params();
+        ghmxy_values = ev.clientX+':'+ev.clientY;
+    } else {
+        ghmxy_values += '|'+ev.clientX+':'+ev.clientY;
+        if (ghmxy_values.length > 250) {
+            ghmxy_save();
+        }
+    }
+}
+
+function ghmxy_flash(id,xx,yy) {
+    // ReSharper disable once InconsistentNaming
+    var ghmxy_obj = document.getElementById(id);
+    if (ghmxy_obj) {
+        var x=0;
+        var y=0;
+        if (ghmxy_obj.offsetParent) {
+            do {
+                x += ghmxy_obj.offsetLeft;
+                y += ghmxy_obj.offsetTop;
+                ghmxy_obj = ghmxy_obj.offsetParent;
+            } while (ghmxy_obj);
+        } else {
+            if (ghmxy_obj.x) {
+                x = ghmxy_obj.x;
+            }
+            if (ghmxy_obj.y) {
+                y = ghmxy_obj.y;
+            }
+        }
+        x+=xx;
+        y+=yy;
+        if(ghmxy_values==''){
+            ghmxy_sarg = ghmxy_heat_map_refresh_window_params();
+            ghmxy_values = x+':'+y;
+        } else {
+            ghmxy_values += '|'+x+':'+y;
+            if (ghmxy_values.length > 250) {;
+                ghmxy_save();
+            }
+        }
+    }
+}
+
+// common
+
+function ghmxy_click(ev) {
+    ghmxy_hm_click(ev);
+    ghmxy_xy_click(ev);
+}
+
+function ghmxy_add_event(ob,evname,fn) {
+    if (ob.attachEvent) {
+        ob.attachEvent("on"+evname,fn);
+    } else if(ob.addEventListener) {
+        ob.addEventListener(evname,fn, false);
+    }
+}
+
+// common:
+ghmxy_add_event(document,"click",ghmxy_click);
+// heat map:
+ghmxy_add_event(window,"load",ghmxy_load);
+// xy map:
+ghmxy_add_event(window,"unload",ghmxy_save);
+ghmxy_add_event(window,"scroll",ghmxy_save);
+ghmxy_add_event(window,"resize",ghmxy_save);
+
+// (c) 2000-2007 by Gemius SA
+
+var gemius_sarg_proto;
+if(document.location && document.location.protocol) {
+    gemius_sarg_proto = 'http'+((document.location.protocol=='https:')?'s':'')+'://';
+} else {
+    gemius_sarg_proto = 'http://';
+}
+
+
+
+function gemius_sarg_hit(id,sarg) {
+    // ReSharper disable once InconsistentNaming
+    // ReSharper disable UseOfImplicitGlobalInFunctionScope
+    var gemius_url = gemius_sarg_proto+gemius_sarg_host+'/_'+(new Date()).getTime()+'/redot.gif?l=16&id='+id+'&sarg='+sarg+gemius_parameters();
+    // ReSharper restore UseOfImplicitGlobalInFunctionScope
+    if (typeof window.gemius_sarg_images == 'undefined') {
+        window.gemius_sarg_images = new Array();
+    }
+    // ReSharper disable once InconsistentNaming
+    var gemius_l = window.gemius_sarg_images.length;
+    if (typeof gemius_sarg_sem == 'undefined') {
+        // ReSharper disable once AssignToImplicitGlobalInFunctionScope
+        gemius_sarg_sem=0;
+    }
+    if (gemius_l<=gemius_sarg_sem) {
+        window.gemius_sarg_images[gemius_l]=new Image();
+        window.gemius_sarg_images[gemius_l].src = gemius_url;
+    }
+    gemius_sarg_sem++;
+}
+
+
+
+   
+
+/* Gizmo support start */
+
+// Gizmo Brugervurdering  (c) DR Fritz Stoltze Mikkelsen Jan. 2010 
+
+   
+if(!DR.Common)  {
+    DR.Common ={};	
+    DR.Common.BrugerVurdering = {};
+}
+
+DR.Common.BrugerVurdering = {
+
+    GizmoID: "0"
+, NameOfSurvey: ""
+    /*
+
+    Function: ShowSurvey
+    Generates an overlay box vidth input parameters: Contents, GizmoID, NameOfSurvey.
+    Write cookie Surveyticket 
+
+    Dependings:
+    <DR.Modal>
+
+    Example:
+    (start code)
+    DR.Common.BrugerVurdering.ShowSurvey(contents,gizmoID,nameOfSurvey);
+    (end)        
+    */
+, ShowSurvey: function (contents, gizmoID, nameOfSurvey) {
+
+    DR.Common.BrugerVurdering.GizmoID = gizmoID;
+    DR.Common.BrugerVurdering.NameOfSurvey = nameOfSurvey;
+    // debugger;
+
+    contents = contents.toString().replace("\n", "<br>");
+
+    // ReSharper disable once UnusedParameter
+    var modalSurvey = function (opt) {
+        modal.close();
+        var iframe = new Element("iframe", {
+            "id": "brugerundersIframe", name: "brugerundersIframe"
+            , "frameborder": "0"
+            , "style":  "height: 620px; width: 450px;"
+            , "scrolling": "auto"
+            , "border": "0"
+            , "src": "//www.surveygizmo.com/s3/" + DR.Common.BrugerVurdering.GizmoID + "/" + DR.Common.BrugerVurdering.NameOfSurvey
+            , "text": "Henter sp&oslash;rgeskema..."
+        });
+        var main = new Element("div", { "class": "section", "style": "background-color:#fff;width: 450px" });
+        var header = new Element("h3", { "html": "DR - Deltagelse i brugerunders&oslash;gelse", "style": "padding:20px;text-transform:none;font-family:verdana;color:black" });
+        var buttons = new Element("div", { "class": "buttons ", "style": "padding:0 20px 20px 20px;" });
+	       
+        var btnCancel = new Element("button", { "class": "cancel", "text": "Afslut", "style": "padding:0 4px;" });
+        btnCancel.addEvent("click", function () {    modalSurvey.close();    });
+
+
+        var content = iframe;
+
+
+
+
+        modalSurvey = new DR.Modal({
+            "class": "drdkSSO",
+            content: main.adopt(header, content, buttons.adopt(btnCancel))
+        });
+
+    };
+    var modalContent = function (opt) {
+
+        var main = new Element("div", { "class": "section", "style": "background-color:#fff;" });
+        var header = new Element("h3", { "html": "DR - Deltagelse i brugerunders&oslash;gelse", "style": "padding:20px;text-transform:none;font-family:verdana;color:black " });
+        var content = new Element("div", { "html": opt.contents, "style": "padding:20px;font-family:verdana;color:black" });
+        var buttons = new Element("div", { "class": "buttons ", "style": "padding:0 20px 20px 20px;" });
+        var btnConfirm = new Element("button", { "class": " submit", "text": "OK", "style": "padding:0 4px;" });
+        var btnCancel = new Element("button", { "class": "cancel", "text": "Nej tak", "style": "padding:0 4px;" });
+
+        btnConfirm.addEvent("click", function () {
+            modalSurvey();
+        });
+        btnCancel.addEvent("click", function () {
+            modal.close();
+        });
+
+        return main.adopt(header, content, buttons.adopt(btnConfirm, btnCancel));
+    }
+
+
+    var modal = new DR.Modal({
+        "class": "drdkSSO",
+
+        content: modalContent({ contents: contents })
+    });
+
+    //debugger;
+    return false;
+
+}
+};
+
+
+DR.Common.BrugerVurdering.Build = function(options){
+	
+    var content = new Element("div");
+    content.setStyle("background", "grey");
+    if (options.process) {
+        content.adopt(new Element('img', {src: '//www.dr.dk/drdkjs/graphics/ic_process.gif', 'class': 'drdkSSOProcess', styles: {position: 'absolute', left: 323, top: 4, display: 'none'} }));
+    }
+
+    if (options.header) {
+        content.adopt(new Element("h3", {html: options.header}).adopt(new Element("span",{'class':'test','html':'&nbsp;'})) );
+    }
+	
+    if (options.elements) {
+        options.elements.each(function(data){
+            (mytypeof(data)=="element" ? data : element(data)).inject(content);
+        });
+    }
+	
+    function mytypeof (subject) {
+        var type;
+
+        switch (subject) {
+
+            case null:
+                type = "object";
+                break;
+
+            case undefined:
+                type = undefined + "";
+                break;
+
+            default:
+                type = ({}).toString.call(subject).slice(8, -1).toLowerCase();
+                if (type.indexOf("element") > -1) {
+                    type = "element";
+                }
+                break;
+
+        }
+
+        return type;
+    }
+	
+    if (options.buttons) {
+        var p = new Element("p", {"class": "buttons"});
+        options.buttons.each(function(data){
+            button(data).inject(p);
+        });
+        p.inject(content);
+    }
+    return content;
+		
+    function element(data){
+	
+        var req = ("required" in data && data.required) ? '*':' ';
+		
+        if (data.html) {
+            return new Element("div", {html: data.html, events: data.events || ''}); 
+        }
+        else {
+            return new Element('p', {'class': 'input'}).adopt(
+                new Element("label", {'for': data.id, text: data.text})
+                ,new Element("input", {'id': data.id, type: data.type || "text", "class": data.type || "text", value: data.value || "", name: data.name || "", events: data.events || ''})
+                ,new Element("span", {'html': req, 'class': 'required'})
+            );
+        }
+    }
+	
+    function button(data) {
+        var btn = new Element("button", {text: data.text});
+
+        if ("data" in data && data.data == "close") {
+            btn.set("data", "close");
+        }
+        if (data.click) {
+            btn.addEvent("click", data.click);
+        }
+        if (data["class"]) {
+            btn.addClass(data["class"]);	
+        }
+		
+        return btn;
+    }
+    //return content;
+};
+
+/* Fjernet 2 juni 2016 af Fritz S Mikkelsen pga. 503 Service unavailble
+ChartBeat by Fritz Stoltze Mikkelsen 26 maj 2015 ...
+try {
+    if (typeof(document) != 'undefined' && typeof(document.location) != 'undefined' && typeof(document.location.href) != 'undefined') {
+        var LocationPathName = document.location.pathname.toLowerCase().split("/");
+        if (LocationPathName.length > 0 && LocationPathName[1] != "radio" && LocationPathName[1] != "tv" && LocationPathName[1] != "playlister") {
+            if (LocationPathName.length == 1 || LocationPathName.length > 1 && LocationPathName[2] != "radio" && LocationPathName[2] != "tv") {
+                var sections = LocationPathName[1];
+                if (LocationPathName.length > 1) {
+                    sections += '/';
+                    if (LocationPathName.length>2 && LocationPathName[2].indexOf('.')==-1 && LocationPathName[2]!='undefined' && LocationPathName[2]!='frontpage') sections += LocationPathName[2];
+                } 
+
+                var _sf_startpt = (new Date()).getTime();
+                var _sf_async_config = {};
+                _sf_async_config.uid = 16132;
+                _sf_async_config.domain = 'dr.dk';
+                _sf_async_config.useCanonical = true;
+                _sf_async_config.sections = sections;
+                _sf_async_config.authors = 'DR';
+                (function() {
+                    function loadChartbeat() {
+                        window._sf_endpt = (new Date()).getTime();
+                        var e = document.createElement('script');
+                        e.setAttribute('language', 'javascript');
+                        e.setAttribute('type', 'text/javascript');
+                        e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+                        document.body.appendChild(e);
+                    }
+
+                    var oldonload = window.onload;
+                    window.onload = (typeof window.onload != 'function') ?
+                        loadChartbeat : function() {
+                            oldonload();
+                            loadChartbeat();
+                        };
+                })();
+            }
+        }
+    }
+} catch(err) {} 
+//...ChartBeat by Fritz Stoltze Mikkelsen 26 maj 2015 
+... Fjernet 2 juni 2016 af Fritz S Mikkelsen pga. 503 Service unavailble*/
+//}
+//.... end of exclude area for minimized webstat
+// Google Analytics by/ Fritz 17. feb 2015 universal version begin
+try 
+{
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-7192064-1', {'cookieDomain': 'www.dr.dk','cookieExpires': 157680000});
+    //ga('create', 'UA-7192064-1', {'sampleRate': 20,'cookieDomain': 'www.dr.dk','cookieExpires': 157680000});
+    // Support for Drupal sites by Fritz S Mikkelsen 24.april 2015 begin ...
+    ga('set', 'anonymizeIp', true);
+    try {
+        if (typeof(Drupal) == 'undefined' || typeof(Drupal.settings) == 'undefined' || typeof(Drupal.settings.publishedDate) == 'undefined' ) {
+            ga('send', 'pageview');        
+        }
+        else {
+            var pDate = new Date(parseInt(Drupal.settings.publishedDate) * 1000);
+            var M = (pDate.getMonth() + 1) < 10 ? "0" + (pDate.getMonth() + 1) : pDate.getMonth() + 1;
+            var D = pDate.getDate() < 10 ? "0" + pDate.getDate() : pDate.getDate();
+            var articleType = 'artikel';
+            if (typeof (Drupal.settings.articleType) != 'undefined') articleType = Drupal.settings.articleType.toLowerCase();
+        
+            var url = window.location.pathname + "#/artikelType/" + articleType + "/dato/" + pDate.getFullYear() + "-" + M + "-" + D;
+            ga('send', 'pageview', { 'page': url });
+            //url = window.location.host + window.location.pathname  + "#" + articleType + "/" + pDate.getFullYear() + "-" + M + "-" + D;
+            //ga('send', 'event', url, 'click', 'play');
+        }
+    } catch(err) 
+    {
+        ga('send', 'pageview');
+    }
+    // ...ended Support for Drupal sites by Fritz S Mikkelsen 24.april 2015
+  
+}
+catch(err) {} 
+// end of universal version Google Analytics by/ Fritz 17. feb 2015 
+
+// Gizmo stoppet v/ Fritz S Mikkelsen  6. okt 2015 
+if (typeof Gizmo == 'undefined') {
+    var Gizmo = { 
+
+	 surveyExp: 20
+	 ,surveys : [
+	[['Overlay-DRDK-Forsiden'],['www.dr.dk/drxml'],[100.00],[893584],['Fritz test only \n Mvh. Fritz']]
+           ] 
+       , Search: function() { 
+           var myCookie;
+           
+// ReSharper disable once UseOfImplicitGlobalInFunctionScope
+               myCookie = Cookie.read('surveyExp'); // 
+           
+           if (myCookie == "true") {
+               return false;
+           }
+
+
+
+           var uri = location.href;
+// ReSharper disable once InconsistentFunctionReturns
+           if (uri == '') return;
+// ReSharper disable once InconsistentFunctionReturns
+		       if (uri.lastIndexOf("app_mode=true") != -1) return; 
+           if (uri.lastIndexOf("/") != -1) 
+           {
+              uri=uri.substring(0,uri.lastIndexOf("/"));
+              if (uri.match("/$")!="/") uri=uri+"/";           
+           }
+           
+           
+           for (var k = 0; k < this.surveys.length; k++) {
+// ReSharper disable once AssignToImplicitGlobalInFunctionScope
+               re = new RegExp('(//' + this.surveys[k][1][0] + ')', 'ig');
+               if (re.test(uri)) {
+                   if(this.surveys[k][1][0].length<=11 && uri.length>18) return false;
+                   var randomNumber = Math.random() * 100;
+                   if (randomNumber <= this.surveys[k][2][0]) {
+                       DR.Common.BrugerVurdering.ShowSurvey((this.surveys[k][4][0]), (this.surveys[k][3][0]).toString(), (this.surveys[k][0][0]));
+                      
+// ReSharper disable once UseOfImplicitGlobalInFunctionScope
+// ReSharper disable once AssignedValueIsNeverUsed
+                      myCookie = Cookie.write('surveyExp', true, { duration: this.surveyExp });
+                      
+                      return false;
+                   }
+
+               }
+// ReSharper disable once AssignToImplicitGlobalInFunctionScope
+               re = null;
+           }
+           return false;
+       }
+    }
+}
+ //if (window.addEvent) { window.addEvent('domready', function () { Gizmo.Search();}); }

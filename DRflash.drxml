@@ -1,0 +1,60 @@
+/* VERSIONINFO: Flash-std 1.1 */
+
+/* TNSmetrix User preferences */
+var prot = 'http';
+var fmdotl = '';
+var fmcc = 'dk';
+var fmac = 'dr_dk';
+var fmenc = 'ISO-8859-15';
+var fmtmsec = new Array('tmsec=flashmetrix');
+function DRflash(furl,action)
+{
+	// action is for future use
+	getTMstats(furl);
+}
+function getTMstats(furl){ 
+   var n = new Date();
+   
+   if (parent.frames) {
+      var ref = parent.document.referrer;
+   } else {
+      var ref = document.referrer;
+   }
+   //append movie name
+   var loc = window.location + '_' + furl;
+   
+   if (fmtmsec) {
+      loc += '&' + fmtmsec.join('&');
+   } 
+   var qs = loc + '*' + furl + '*' + fmdotl + '*' + ref + '*' + navigator.javaEnabled() + '/';
+   if (window.screen) {
+        qs += screen.width+'x'+screen.height + '/' + screen.colorDepth + '/';
+   } else {
+        qs += '//';
+   }
+   
+   qs += fmac + '/' + fmcc + '/' + fmenc + '/' + n.getTime() + '/';
+   nxtImgFm('fmImg1', prot, n.getTime());
+   document.images['fmImg1'].onLoad = nxtImgFm('fmImg2', prot, qs);
+}
+
+var fmLoc = 'statistik-gallup.net';
+var fmVer = 'V11';
+var fmLd = false;
+
+function nxtImgFm(img, prot, qs)
+{
+   if((!document.images) || fmLd) return;
+   fmLd = true;
+   var n = '';
+   if(img == 'fmImg1') {
+      n = prot + '://' + fmLoc + '/VC' + qs;
+   }
+   else if(img == 'fmImg2') {
+      n = prot + '://' + fmLoc + '/' + fmVer + qs;
+   }
+   if(document.images[img].src.indexOf(n)<0) {
+      document.images[img].src = n;
+   }
+   fmLd = false;
+}

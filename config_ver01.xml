@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <paths>
+    <sound>media/mp3/</sound>
+  </paths>
+  <games>
+	  
+    <game id = "bamlet" startSound="bamlet_velkommen.mp3" endSound="bamletspil_scene5_proev_igen.mp3">
+      <scenes>
+        <scene id="house" soundStart="bamletspil_scene1_start.mp3" soundFinish="bamletspil_scene1_slut.mp3" cords="328,273:493,294:328,273:280,228:328,273" music1="scene01-musedans.mp3" music2="scene01_skorsten_ned-op.mp3" music3="scene01_traekrone.mp3"/>
+        <scene id="lake" soundStart="bamletspil_scene2_start.mp3" soundFinish="bamletspil_scene2_slut.mp3" cords="494,346:37,346:53,322:444,314:494,346" music1="scene02_ripples.mp3" music2="scene02_sylfider.mp3" music3="scene02_blomster.mp3"/>
+        <scene id="forrest" soundStart="bamletspil_scene3_start.mp3" soundFinish="bamletspil_scene3_slut.mp3" cords="404,296:72,290:224,292:412,290:114,295" music1="scene03_træstamme_egern.mp3" music2="scene03_bier.mp3" music3="scene03_gøgerede.mp3"/>
+        <scene id="skies" soundStart="bamletspil_scene4_start.mp3" soundFinish="bamletspil_scene4_slut.mp3" cords="130,182:447,260:16,266:462,156:2,207" music1="scene04_sky2.mp3" music2="scene04_snesky.mp3" music3="scene04_sky3.mp3"/>
+      </scenes>
+    </game>
+	  
+    <game id="mirror" startSound="kyllingebamlet_start.mp3" endSound="kyllingebamlet_slut.mp3">
+      <sounds>
+        <music>
+          <sound>scene03_gøgerede.mp3</sound>
+          <sound>scene01_traekrone.mp3</sound>
+          <sound>scene02_sylfider.mp3</sound>
+          <sound>scene02_ripples.mp3</sound>
+          <sound>scene04_snesky.mp3</sound>
+        </music>
+        <reactions id="positive">
+          <sound>positive_1.mp3</sound>
+          <sound>positive_2.mp3</sound>
+          <sound>positive_3.mp3</sound>
+          <sound>positive_4.mp3</sound>
+          <sound>positive_5.mp3</sound>
+          <sound>positive_6.mp3</sound>
+          <sound>positive_7.mp3</sound>
+          <sound>positive_8.mp3</sound>
+          <sound>positive_9.mp3</sound>
+          <sound>positive_10.mp3</sound>
+          <sound>positive_12.mp3</sound>
+        </reactions>
+        <reactions id="negative">
+          <sound>negativ_1.mp3</sound>
+          <sound>negativ_2.mp3</sound>
+          <sound>negativ_3.mp3</sound>
+          <sound>negativ_4.mp3</sound>
+          <sound>negativ_5.mp3</sound>
+          <sound>negativ_6.mp3</sound>
+          <sound>negativ_7.mp3</sound>
+          <sound>negativ_8.mp3</sound>
+          <sound>negativ_9.mp3</sound>
+          <sound>negativ_10.mp3</sound>
+          <sound>negativ_11.mp3</sound>
+          <sound>negativ_12.mp3</sound>
+        </reactions>
+      </sounds>
+    </game>
+	  
+    <game id ="music" startSound="molodier_start.mp3" endSound="bamletspil_scene5_proev_igen.mp3">
+      <sounds>
+        <music>
+          <sound>scene01-musedans.mp3</sound>
+          <sound>scene01_traekrone.mp3</sound>
+          <sound>scene03_gøgerede.mp3</sound>
+          <sound>scene02_ripples.mp3</sound>
+          <sound>scene03_bier.mp3</sound>
+        </music>
+        <speakreactions>
+          <sound>molodier_reaktion_godmolodi.mp3</sound>
+          <sound>molodier_reaktion_smuk.mp3</sound>
+          <sound>molodier_reaktion_soergelig.mp3</sound>
+          <sound>molodier_reaktion_kaerlighed.mp3</sound>
+          <sound>molodier_reaktion_tosset.mp3</sound>
+        </speakreactions>
+      </sounds>
+    </game>
+  </games>
+	
+  <menu>
+    <item id="bamlet">
+      <variation>bamletspil_mouseover-1.mp3</variation>
+      <variation>bamletspil_mouseover_2.mp3</variation>
+      <variation>bamletspil_mouseover_3.mp3</variation>
+    </item>
+    <item id="mirror">
+      <variation>kyllingebamlet_mouseover_1.mp3</variation>
+      <variation>kyllingebamlet_mouseover_2.mp3</variation>
+      <variation>kyllingebamlet_mouseover_3.mp3</variation>
+    </item>
+    <item id="music">
+      <variation>molodier_mouseover_1.mp3</variation>
+      <variation>molodier_mouseover_2.mp3</variation>
+      <variation>molodier_mouseover_3.mp3</variation>
+    </item>
+  </menu>
+	
+</root>
